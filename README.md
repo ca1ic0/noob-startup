@@ -9,7 +9,7 @@
 4.  初始化cuda
 5.  初始化常用systemd
 6.  安装常用apt package
-7.  
+7.  安装tailscale
 本项目中`docker`文件夹中docker-compose脚本主要包含如下项目：、
 1. BT下载: qbittorrent
 2. 文件管理: filebrowser
