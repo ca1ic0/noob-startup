@@ -23,4 +23,5 @@ docker  && bash ./portainer.sh || "No Docker installed, please check the driver"
 which nvidia-smi && ./cuda.sh || echo  "No nv-smi installed, please check the driver" 
 [ -z ${CUDA_HOME} ] && echo " No CUDA INSTALLED On This System! " || ./nv-container.sh   
 
-
+# tailscale
+curl -fsSL https://tailscale.com/install.sh | sh
