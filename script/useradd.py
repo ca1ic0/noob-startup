@@ -16,6 +16,8 @@ def useradd(username):
         formatted_date = time.strftime("%H%M%S", now)
         password = username  + str(random.randint(1,100))  + str(formatted_date)  
         cm = f"echo {username}:{password} | sudo chpasswd"
+        print("[command]" + cm)
+
         if os.system(cm) != 0 :
             print("[log]用户:"+username+"密码变更失败")
         else:

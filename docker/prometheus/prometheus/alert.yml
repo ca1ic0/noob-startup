@@ -1,0 +1,11 @@
+groups:
+- name: Prometheus alert
+  rules:
+  - alert: 服务告警
+    expr: up == 0
+    for: 30s
+    labels:
+      severity: critical
+    annotations:
+      summary: "服务器异常，实例: {{ $labels.instance }}"
+      description: "{{ $labels.job }} 服务器已关闭"
