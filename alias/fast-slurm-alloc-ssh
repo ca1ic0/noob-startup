@@ -1,0 +1,1 @@
+alias sallocnode='salloc -N 1 -n 8 --gres=dcu:1 -p <queue> --ntasks-per-node=8' &&  ssh $(squeue | awk 'NR==2 {print $8}')
