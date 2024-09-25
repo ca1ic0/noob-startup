@@ -1,0 +1,3 @@
+alias sallocnode='salloc -N 1 -n 8 --gres=dcu:1 -p <queue> --ntasks-per-node=8'
+alias sshnode="ssh $(squeue | awk 'NR==2 {print $8}')"
+alias scancelall="for i in $(squeue | awk 'NR>1 {print $1}') ; do scancel $i; done"
