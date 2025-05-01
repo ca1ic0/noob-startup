@@ -15,7 +15,7 @@ services:
     networks:
       - qb_network
   qbittorrent:
-    image: lscr.io/linuxserver/qbittorrent:latest
+    image: m.daocloud.io/docker.io/linuxserver/qbittorrent:latest
     container_name: qbittorrent
     environment:
       - PUID=1000
