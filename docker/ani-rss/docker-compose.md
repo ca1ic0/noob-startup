@@ -1,0 +1,56 @@
+version: "3.9"
+services:
+  peerbanhelper:
+    image: registry.cn-hangzhou.aliyuncs.com/ghostchu/peerbanhelper:v7.4.13
+    restart: unless-stopped
+    container_name: "peerbanhelper"
+    volumes:
+      - /vol1/1000/docker/qb-ban/banner-data:/app/data
+    ports:
+      - "9898:9898"
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=UTC
+    networks:
+      - qb_network
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Shanghai
+      - WEBUI_PORT=8081
+      - TORRENTING_PORT=6881
+    volumes:
+      - /vol1/1000/docker/qb-ban/qb-config:/config
+      - /vol2/1000/AnimeRss:/downloads/animerss
+    ports:
+      - 8081:8081
+      - 6881:6881
+      - 6881:6881/udp
+    restart: unless-stopped
+    networks:
+      - qb_network
+  ani-rss:
+    image: "registry.fnnas.com/fnapp/wushuo894_ani-rss:latest"
+    container_name: ani-rss
+    volumes:
+      - /var/apps/docker-anirss/shares/config:/config
+      - /var/apps/docker-anirss/shares/Media:/Media
+    network_mode: bridge
+    ports:
+      - "17789:7789"
+    restart: unless-stopped
+    dns:
+      - 223.5.5.5
+    environment:
+      - TZ=Asia/Shanghai
+      - CONFIG=/config
+      - PORT=7789
+      - PGID="${TRIM_UID}"
+      - PUID="${TRIM_GID}"
+networks:
+  qb_network:
+    driver: bridge
