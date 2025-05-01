@@ -22,14 +22,14 @@ services:
       - PGID=1000
       - TZ=Asia/Shanghai
       - WEBUI_PORT=8081
-      - TORRENTING_PORT=6881
+      - TORRENTING_PORT=51200
     volumes:
       - /vol1/1000/docker/qb-ban/qb-config:/config
       - /vol2/1000/AnimeRss:/downloads/animerss
     ports:
       - 8081:8081
-      - 6881:6881
-      - 6881:6881/udp
+      - 51200:51200
+      - 51200:51200/udp
     restart: unless-stopped
     networks:
       - qb_network
